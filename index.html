@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Курс «У меня подросток, помогите» — НЭН</title>
+<!-- Адрес страницы и slug курса (/podrostok/) — рабочие, сверить при выкладке -->
+<link rel="canonical" href="https://n-e-n.ru/podrostok/">
+<meta name="description" content="Курс НЭН для родителей подростков 11–17 лет: 33 жизненные ситуации с подсказками, что сказать и с чего начать. 4500 ₽, доступ навсегда.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="У меня подросток, помогите — курс НЭН">
+<meta property="og:description" content="33 ситуации с подсказками: как разговаривать с подростком, договариваться о правилах и понимать, когда нужна помощь специалиста.">
+<meta property="og:image" content="https://n-e-n.ru/images/2025-03-13/67d2e83832a80_1200x630.jpg">
+<meta property="og:url" content="https://n-e-n.ru/podrostok/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ───────────── Токены: Figma «NEN products» (node 111:6232), те же, что на /perestan/ ─────────────
+     Сетка: колонка 1200px, светлый розовый фон, тёмно-синие плашки для «Как устроен урок»
+     и стоимости, оранжевый только у кнопок покупки и акцентов. */
+  :root{
+    --nen-blue-900:#252f67;
+    --nen-blue-700:#3d53bf;
+    --nen-blue-500:#6683ff;
+    --nen-blue-200:#c5d0ff;
+    --nen-blue-50:#f1f4ff;
+    --nen-pink-200:#ffccda;
+    --nen-pink-50:#fff6f8;
+    --nen-orange-500:#fb6326;
+    --nen-orange-600:#cc3d04;   /* текст и кнопки с белым текстом: 4,96:1 */
+    --nen-white:#fff;
+    --muted:#5d628c;            /* blue-900 на 72% поверх pink-50: подписи */
+
+    --display:"Unbounded",system-ui,-apple-system,sans-serif;
+    --text:"Golos Text",system-ui,-apple-system,sans-serif;
+
+    --fs-h1:clamp(30px,1.9vw + 20px,44px);
+    --fs-h2:clamp(24px,1.1vw + 17px,32px);
+    --fs-h3:clamp(18px,.35vw + 16px,20px);
+    --fs-lead:clamp(17px,.35vw + 15px,20px);
+    --fs-body:16px;
+    --fs-sm:14px;
+    --fs-xs:12px;
+
+    --radius:10px;
+    --radius-pill:30px;
+    --radius-tag:6px;
+    --wrap:1200px;
+    --gutter:clamp(16px,3vw,40px);
+    --section-gap:clamp(56px,7vw,100px);
+    --bar-h:84px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+  body{
+    margin:0;
+    background:var(--nen-pink-50);
+    color:var(--nen-blue-900);
+    font-family:var(--text);
+    font-size:var(--fs-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;overflow-wrap:break-word}
+  h1{font-size:var(--fs-h1);font-weight:700;line-height:1.15}
+  h2{font-size:var(--fs-h2);font-weight:600;line-height:1.3}
+  h3{font-size:var(--fs-h3);font-weight:500;line-height:1.4}
+  p{margin:0;text-wrap:pretty}
+  ul,ol{margin:0;padding:0;list-style:none}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .nowrap{white-space:nowrap}
+
+  .wrap{width:min(100% - var(--gutter) * 2,var(--wrap));margin-inline:auto}
+  section{padding-bottom:var(--section-gap)}
+  .section-head{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:32px}
+  .section-head p{font-size:18px;font-weight:500}
+
+  /* ───────────── Кнопка, ссылка, тег ───────────── */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--nen-orange-600);color:var(--nen-white);
+    font-family:var(--display);font-weight:500;font-size:var(--fs-sm);line-height:1.4;
+    text-decoration:none;text-align:center;white-space:nowrap;
+    padding:19px 48px 17px;border:0;border-radius:var(--radius-pill);cursor:pointer;
+    transition:transform .3s cubic-bezier(.16,1,.3,1),filter .2s;
+  }
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn:active{transform:translateY(0)}
+  .btn:focus-visible{outline:3px solid var(--nen-blue-500);outline-offset:3px}
+  .btn-ghost{background:transparent;color:var(--nen-blue-900);border:2px solid var(--nen-blue-200);padding:11px 22px 9px;font-size:var(--fs-xs)}
+  .btn-ghost:hover{filter:none;border-color:var(--nen-blue-500)}
+
+  .link-down{
+    font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-blue-700);
+    text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;
+    padding:8px 2px;
+  }
+  .link-down:hover{color:var(--nen-blue-900)}
+  .link-down:focus-visible{outline:2px solid var(--nen-blue-500);outline-offset:3px;border-radius:4px}
+
+  .tag{
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:400;font-size:var(--fs-xs);line-height:normal;
+    text-transform:uppercase;letter-spacing:.03em;padding:9px 18px 8px;border-radius:var(--radius-tag);
+  }
+  .tag-blue{background:var(--nen-blue-200);color:var(--nen-blue-900)}
+
+  /* ───────────── Шапка ───────────── */
+  .site-header{padding:24px 0 0}
+  .site-header .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .site-header .logo{flex:none;display:inline-flex;align-items:center}
+  .site-header .logo img{height:34px;width:auto}
+
+  /* ───────────── Первый экран ───────────── */
+  .hero{padding-top:clamp(28px,4vw,48px)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+  @media (min-width:1200px){ .hero-grid{grid-template-columns:540fr 614fr} }
+  .hero-copy{display:flex;flex-direction:column;gap:20px;align-items:flex-start;max-width:540px}
+  .hero h1 em{font-style:normal;color:var(--nen-orange-600)}
+  .hero .sub{font-family:var(--display);font-weight:500;font-size:var(--fs-lead);line-height:1.45}
+  .hero .who{font-weight:500;font-size:18px}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:6px}
+  .hero .facts{font-size:var(--fs-sm);color:var(--muted);font-weight:500}
+  .hero-art{
+    aspect-ratio:1200 / 630;border-radius:var(--radius);overflow:hidden;
+    background:#cdcbf9; /* цвет фона самой обложки, пока она грузится */
+  }
+  .hero-art img{width:100%;height:100%;object-fit:cover}
+
+  /* ───────────── Программа ─────────────
+     Карточки и панели уроков — соседи в одной сетке. Скрипт ставит открытой панели
+     order сразу после последней карточки её ряда, поэтому на компьютере список
+     раскрывается на всю ширину под рядом, а в одну колонку становится аккордеоном.
+     Без скрипта все списки просто видны под своими карточками. */
+  .program-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .mod{
+    position:relative;
+    background:var(--nen-white);border:1px solid var(--nen-pink-200);border-radius:var(--radius);
+    padding:24px 22px 20px;display:flex;flex-direction:column;gap:10px;
+    transition:border-color .2s,background-color .2s,transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .mod:hover{border-color:var(--nen-blue-200);transform:translateY(-2px)}
+  .mod .count{font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-orange-600)}
+  .mod h3 button{
+    all:unset;cursor:pointer;color:var(--nen-blue-900);
+  }
+  /* Кликабельна вся карточка: прозрачный слой кнопки на всю площадь */
+  .mod h3 button::after{content:"";position:absolute;inset:0;border-radius:var(--radius)}
+  .mod h3 button:focus-visible::after{outline:3px solid var(--nen-blue-500);outline-offset:2px}
+  .mod .desc{color:var(--nen-blue-900)}
+  .mod .more{
+    margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:8px;
+    font-family:var(--display);font-weight:500;font-size:var(--fs-xs);color:var(--nen-blue-700);
+  }
+  .mod .more svg{width:14px;height:14px;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .mod.open{background:var(--nen-blue-50);border-color:var(--nen-blue-500)}
+  .mod.open .more svg{transform:rotate(180deg)}
+  .mod .more .when-open{display:none}
+  .mod.open .more .when-open{display:inline}
+  .mod.open .more .when-closed{display:none}
+
+  .lessons{
+    grid-column:1 / -1;
+    background:var(--nen-blue-50);border:1px solid var(--nen-blue-200);border-radius:var(--radius);
+    padding:28px 32px;
+  }
+  .lessons .title{font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-blue-700);margin-bottom:18px}
+  .lessons ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 40px}
+  .lessons li{position:relative;padding-left:24px;display:flex;flex-direction:column;gap:2px}
+  .lessons li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--nen-orange-500)}
+  .lessons li b{font-weight:600;font-size:17px}
+  .lessons li span{color:var(--muted)}
+
+  /* ───────────── Как устроен урок ───────────── */
+  .how-text{display:flex;flex-direction:column;gap:10px;font-size:18px;font-weight:500;max-width:760px;margin-bottom:32px}
+  .demo{
+    background:var(--nen-blue-900);color:var(--nen-blue-50);border-radius:var(--radius);
+    padding:clamp(24px,4vw,48px);
+  }
+  .demo-head{display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:820px;margin-bottom:28px}
+  .demo-head h3{color:var(--nen-blue-50);font-weight:600}
+  .demo-head .from{font-size:var(--fs-sm);color:var(--nen-blue-200)}
+  .demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .demo-card{
+    background:var(--nen-pink-50);color:var(--nen-blue-900);border-radius:var(--radius);
+    padding:24px 22px;display:flex;flex-direction:column;gap:12px;min-width:0;
+  }
+  .demo-label{font-family:var(--display);font-weight:500;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--nen-blue-700)}
+  .demo-card h4{font-size:17px;font-weight:500;line-height:1.4;color:var(--nen-blue-700)}
+  .say{border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+  .say small{font-size:var(--fs-sm);font-weight:500}
+  .say p{font-weight:500;font-size:17px;line-height:1.45}
+  .say-not{border:1.5px dashed var(--nen-blue-200);color:var(--muted)}
+  .say-yes{background:var(--nen-blue-700);color:var(--nen-white)}
+  .say-yes small{color:var(--nen-blue-200)}
+  .demo-memo{background:var(--nen-blue-500);color:var(--nen-white)}
+  .demo-memo .demo-label{color:var(--nen-blue-50)}
+  .demo-memo b{font-weight:700}
+
+  /* ───────────── Авторы и проверка ───────────── */
+  .authors-card{
+    background:var(--nen-blue-50);border:1px solid var(--nen-blue-200);border-radius:var(--radius);
+    padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px 56px;align-items:start;
+  }
+  .authors-card .head{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+  .authors-text{display:flex;flex-direction:column;gap:14px;font-size:18px}
+
+  /* ───────────── Стоимость ───────────── */
+  .price-panel{
+    background:var(--nen-blue-900);color:var(--nen-blue-50);border-radius:var(--radius);
+    padding:clamp(28px,4.5vw,55px);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px 64px;align-items:center;
+  }
+  .price-copy{display:flex;flex-direction:column;gap:14px}
+  .price-copy h2{color:var(--nen-blue-50)}
+  .price-copy .includes{font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-blue-200);line-height:1.6}
+  .terms{display:grid;gap:10px;margin-top:10px}
+  .terms li{position:relative;padding-left:24px}
+  .terms li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--nen-orange-500)}
+  .terms a{color:var(--nen-white);font-weight:600}
+  .price-action{
+    background:rgba(241,244,255,.06);border:1px solid rgba(241,244,255,.16);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;
+  }
+  .price-action .price{font-family:var(--display);font-weight:600;font-size:clamp(36px,3vw + 16px,52px);line-height:1;color:var(--nen-white);font-variant-numeric:tabular-nums}
+  .price-action .btn{width:100%}
+  .price-action .note{font-size:var(--fs-sm);color:var(--nen-blue-200)}
+
+  /* ───────────── FAQ ───────────── */
+  .faq .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:0 56px;align-items:start}
+  .faq .section-head{position:sticky;top:24px}
+  .faq-list{display:grid;gap:12px}
+  .faq-list details{background:var(--nen-white);border:1px solid var(--nen-pink-200);border-radius:var(--radius)}
+  .faq-list details[open]{border-color:var(--nen-blue-200)}
+  .faq-list summary{
+    list-style:none;cursor:pointer;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-weight:600;font-size:18px;line-height:1.4;border-radius:var(--radius);
+  }
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-list summary:focus-visible{outline:3px solid var(--nen-blue-500);outline-offset:2px}
+  .faq-list summary .plus{flex:none;width:28px;height:28px;border-radius:50%;background:var(--nen-blue-50);color:var(--nen-blue-700);display:grid;place-items:center;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .faq-list summary .plus svg{width:12px;height:12px}
+  .faq-list details[open] summary .plus{transform:rotate(45deg)}
+  .faq-list .answer{padding:0 22px 22px;display:flex;flex-direction:column;gap:10px;max-width:760px}
+  .faq-list .answer a{color:var(--nen-blue-700);font-weight:600}
+
+  /* ───────────── Подвал ───────────── */
+  .site-footer{
+    background:var(--nen-blue-900);color:var(--nen-blue-50);
+    padding:clamp(40px,5vw,64px) 0 calc(var(--bar-h) + 56px + env(safe-area-inset-bottom,0px));
+  }
+  .help{
+    border:1.5px dashed rgba(241,244,255,.35);border-radius:var(--radius);
+    padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px 48px;align-items:start;margin-bottom:48px;
+  }
+  .help h2{font-size:var(--fs-h3);font-weight:600;color:var(--nen-blue-50)}
+  .help .lead{margin-top:10px;color:var(--nen-blue-200)}
+  .help-lines{display:flex;flex-wrap:wrap;gap:20px 32px}
+  .help-lines li{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .help-lines .num{font-family:var(--display);font-weight:600;font-size:clamp(20px,1vw + 14px,26px);color:var(--nen-white);text-decoration:none;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .help-lines a.num:hover{text-decoration:underline;text-underline-offset:5px}
+  .help-lines .what{font-size:var(--fs-sm);color:var(--nen-blue-200);max-width:21ch}
+  .help .more{grid-column:2;font-size:var(--fs-sm);color:var(--nen-blue-200)}
+  .help .more a{color:var(--nen-blue-50);font-weight:600}
+  .foot-grid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start}
+  .site-footer .logo img{height:32px;width:auto}
+  .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .socials a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(241,244,255,.12);color:var(--nen-blue-50);text-decoration:none;transition:background .2s,transform .2s}
+  .socials a:hover{background:rgba(241,244,255,.24);transform:translateY(-2px)}
+  .socials a:focus-visible{outline:2px solid var(--nen-blue-50);outline-offset:2px}
+  .socials svg{width:20px;height:20px;fill:currentColor;display:block}
+  .foot-legal{max-width:56ch;font-size:var(--fs-sm);color:var(--nen-blue-200);line-height:1.6}
+  .foot-legal a{color:var(--nen-blue-50)}
+  .age{display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--nen-blue-200);border-radius:var(--radius-tag);padding:2px 8px;font-family:var(--display);font-size:var(--fs-xs);color:var(--nen-blue-50);margin-right:6px}
+  .foot-bottom{margin-top:28px;padding-top:20px;border-top:1px solid rgba(241,244,255,.16);font-size:var(--fs-sm);color:var(--nen-blue-200)}
+
+  /* ───────────── Плашка с покупкой ─────────────
+     Появляется, когда кнопка первого экрана ушла вверх, прячется на блоке стоимости
+     и при возврате к первому экрану. Ширина равна колонке контента. */
+  .sticky-cta{
+    position:fixed;left:50%;bottom:0;z-index:60;
+    width:min(100% - 2 * var(--gutter),var(--wrap));
+    transform:translate(-50%,110%);visibility:hidden;
+    background:var(--nen-blue-700);color:var(--nen-blue-50);
+    border-radius:var(--radius) var(--radius) 0 0;
+    min-height:var(--bar-h);
+    padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px)) 36px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    box-shadow:0 -8px 30px rgba(37,47,103,.18);
+    transition:transform .4s cubic-bezier(.16,1,.3,1),visibility 0s linear .4s;
+  }
+  .sticky-cta.show{transform:translate(-50%,0);visibility:visible;transition:transform .4s cubic-bezier(.16,1,.3,1),visibility 0s}
+  .sticky-cta .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .sticky-cta .line{font-family:var(--display);font-weight:500;line-height:1.4}
+  .sticky-cta .name{font-size:var(--fs-sm);color:var(--nen-blue-200)}
+  .sticky-cta .mob{display:none}
+  .sticky-cta .btn{flex:none;padding:16px 36px 14px}
+
+  /* ───────────── Адаптив ───────────── */
+  @media (max-width:1080px){
+    .price-panel{grid-template-columns:1fr;gap:28px}
+    .price-action{flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px 24px}
+    .price-action .btn{width:auto}
+    .price-action .note{flex-basis:100%}
+    .help{grid-template-columns:1fr}
+    .help .more{grid-column:auto}
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .hero-copy{max-width:none}
+    .hero-art{order:-1}
+    .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .demo-grid{grid-template-columns:1fr}
+    .authors-card{grid-template-columns:1fr}
+    .faq .wrap{grid-template-columns:1fr}
+    .faq .section-head{position:static}
+  }
+  @media (max-width:640px){
+    :root{--bar-h:68px}
+    .program-grid{grid-template-columns:1fr;gap:12px}
+    .lessons{padding:20px}
+    .lessons ul{grid-template-columns:1fr}
+    .hero-cta{align-self:stretch;flex-direction:column;align-items:stretch;gap:6px}
+    .hero-cta .link-down{align-self:center}
+    .btn{padding-inline:24px}
+    .price-action{flex-direction:column;align-items:stretch}
+    .price-action .btn{width:100%}
+    .help-lines{flex-direction:column;gap:16px}
+    .faq-list summary{font-size:17px;padding:18px}
+    .faq-list .answer{padding:0 18px 18px}
+    .sticky-cta{width:100%;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px)) 18px;gap:12px}
+    .sticky-cta .desk,.sticky-cta .name{display:none}
+    .sticky-cta .line{font-family:var(--text);font-weight:600;font-size:15px;line-height:1.3}
+    .sticky-cta .mob{display:inline}
+    .sticky-cta .btn{padding:14px 20px 12px;font-size:13px}
+  }
+  @media (max-width:360px){
+    .sticky-cta .line{font-size:13px}
+    .sticky-cta .btn{padding-inline:14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .btn,.mod,.sticky-cta,.sticky-cta.show,.faq-list summary .plus,.mod .more svg{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap inner">
+    <a class="logo" href="/school/" aria-label="Школа НЭН">
+      <img src="https://n-e-n.ru/img/nen_logo_new.svg" alt="НЭН — Нет, это нормально" width="120" height="34">
+    </a>
+    <a class="btn btn-ghost" href="https://n-e-n.ru/account/">Личный кабинет</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- Первый экран -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>У меня подросток, <em>помогите</em></h1>
+        <p class="sub">33 жизненные ситуации с подсказками: как разговаривать с подростком, договариваться о правилах и понимать, когда нужна помощь специалиста.</p>
+        <p class="who">Для родителей подростков 11–17 лет.</p>
+        <div class="hero-cta">
+          <!-- Все кнопки покупки ведут на одну форму оплаты. Slug курса сверить. -->
+          <a class="btn" id="heroBuy" href="/course/podrostok/enroll/">Купить курс за 4&nbsp;500&nbsp;₽</a>
+          <a class="link-down" href="#programma">Посмотреть программу&nbsp;↓</a>
+        </div>
+        <p class="facts">33 урока · 9 разделов · доступ навсегда</p>
+      </div>
+      <div class="hero-art">
+        <!-- Обложка НЭН к тексту «Как общаться с подростком, чтобы сохранить доверие» (13.03.2025).
+             Заменить на иллюстрацию курса, когда она будет готова. -->
+        <img src="images/hero.jpg" alt="Подросток кричит, скрестив руки, мама заглядывает в дверь" width="1200" height="630" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- Программа -->
+  <section class="program" id="programma">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Выберите то, что происходит у вас дома</h2>
+        <p>Девять разделов о повседневных и сложных ситуациях. Начните с актуального вопроса, проходить уроки по порядку не нужно.</p>
+      </div>
+
+      <div class="program-grid" id="programGrid">
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m1">Мы постоянно ссоримся</button></h3>
+          <p class="desc">Как начать разговор, договариваться и восстанавливать контакт после ссоры.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m1">
+          <p class="title">Уроки раздела «Мы постоянно ссоримся»</p>
+          <ul>
+            <li><b>«Ребенка как будто подменили»</b><span>Это возраст или с ним что-то случилось</span></li>
+            <li><b>«Он мне ничего не рассказывает»</b><span>Как сделать, чтобы подросток рассказывал сам</span></li>
+            <li><b>«Мы же договаривались!»</b><span>Как договариваться с подростком, чтобы договоренности держались</span></li>
+            <li><b>«Я опять сорвалась»</b><span>Как перестать кричать на подростка и что делать, если уже накричали</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m2">Дома</button></h3>
+          <p class="desc">Что делать с грубостью, ложью и конфликтами из-за порядка и домашних обязанностей.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m2">
+          <p class="title">Уроки раздела «Дома»</p>
+          <ul>
+            <li><b>«Не смей так со мной разговаривать!»</b><span>Что делать, когда подросток хамит, обесценивает и ругается матом</span></li>
+            <li><b>«Он поднял на меня руку»</b><span>Что делать, если подросток угрожает, ломает вещи или бьет вас</span></li>
+            <li><b>«Ты мне врешь»</b><span>Почему подросток обманывает и как сделать, чтобы он говорил правду</span></li>
+            <li><b>«У тебя в комнате свинарник»</b><span>Как договориться о порядке, домашних делах и душе без ежедневных скандалов</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m3">Экран и сеть</button></h3>
+          <p class="desc">Как обсуждать телефон, нейросети, мошенников и безопасность личной информации.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m3">
+          <p class="title">Уроки раздела «Экран и сеть»</p>
+          <ul>
+            <li><b>«Сколько можно сидеть в телефоне!»</b><span>Как вернуть сон, ужины и живые разговоры, не отбирая телефон</span></li>
+            <li><b>«За него все делает нейросеть»</b><span>Как договориться об ИИ в учебе и что делать, если чат-бот стал подростку другом</span></li>
+            <li><b>«Ему предложили легкую подработку»</b><span>Как уберечь подростка от мошенников, дропперства и вербовки в интернете</span></li>
+            <li><b>«Я нашла у нее такое фото»</b><span>Что делать, если подросток отправил интимный снимок, его шантажируют или взрослый слишком к нему внимателен</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">3 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m4">Школа</button></h3>
+          <p class="desc">Как разговаривать об оценках, экзаменах, отказе идти на занятия и выборе после школы.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m4">
+          <p class="title">Уроки раздела «Школа»</p>
+          <ul>
+            <li><b>«Опять двойка, а ему все равно»</b><span>Почему подросток не хочет учиться и что делать, если уговоры и крики не помогают</span></li>
+            <li><b>«Он говорит, что все равно не сдаст»</b><span>Как помочь подростку с ОГЭ, ЕГЭ и выбором после школы без паники</span></li>
+            <li><b>«Он отказывается идти в школу»</b><span>Как понять, что там невыносимо, и вернуть подростка постепенно</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m5">Свобода и риски</button></h3>
+          <p class="desc">Как договариваться о прогулках и деньгах, обсуждать вейпы и алкоголь.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m5">
+          <p class="title">Уроки раздела «Свобода и риски»</p>
+          <ul>
+            <li><b>«Ты где? Почему не берешь трубку?»</b><span>Как отпускать подростка из дома и знать, что он позвонит, если что-то случится</span></li>
+            <li><b>«Он просит деньги каждый день»</b><span>Как перестать быть банкоматом и научить подростка обращаться с деньгами</span></li>
+            <li><b>«Я нашла вейп в кармане»</b><span>Что делать, если подросток вейпит или курит, и как помочь ему бросить</span></li>
+            <li><b>«Он пришел пьяным»</b><span>Как помочь подростку этой ночью и что делать, если вы боитесь наркотиков</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">3 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m6">Тело</button></h3>
+          <p class="desc">Как говорить об изменениях тела, внешности и здоровье.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m6">
+          <p class="title">Уроки раздела «Тело»</p>
+          <ul>
+            <li><b>«Дочь растет, а разговора о месячных не было»</b><span>Как подготовить ее к взрослению, пока это не случилось на уроке</span></li>
+            <li><b>«Он ничего не спрашивает»</b><span>Как говорить с сыном о взрослении, если ему стыдно, а вам неловко</span></li>
+            <li><b>«Она говорит, что толстая, он — что дрыщ»</b><span>Что говорить подростку о теле и как вовремя заметить расстройство пищевого поведения</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">3 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m7">Любовь и секс</button></h3>
+          <p class="desc">Как обсуждать первую любовь, согласие и ответственность.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m7">
+          <p class="title">Уроки раздела «Любовь и секс»</p>
+          <ul>
+            <li><b>«У нее появился парень»</b><span>Как пережить первую любовь подростка и не стать для него врагом</span></li>
+            <li><b>«Она мне ничего не скажет»</b><span>Как говорить с дочерью о сексе, чтобы в трудную минуту она пришла к вам</span></li>
+            <li><b>«Он все узнает из порно»</b><span>Как говорить с сыном о сексе, согласии и ответственности</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m8">Друзья и семья</button></h3>
+          <p class="desc">Как поддержать в конфликтах со сверстниками, при травле и разногласиях между взрослыми.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m8">
+          <p class="title">Уроки раздела «Друзья и семья»</p>
+          <ul>
+            <li><b>«Мне не нравятся его друзья»</b><span>Что делать, если вас пугают друзья подростка или их у него нет совсем</span></li>
+            <li><b>«Его травят, а он просит не лезть»</b><span>Как понять, что подростка травят, и защитить его в школе и в сети</span></li>
+            <li><b>«Говорят, что травит мой ребенок»</b><span>Что делать, если обидчик — ваш подросток</span></li>
+            <li><b>«Я запрещаю, а папа разрешает»</b><span>Как договориться о правилах с бывшим, новым партнером и бабушкой, чтобы подросток не оказался между вами</span></li>
+          </ul>
+        </div>
+
+        <article class="mod">
+          <p class="count">4 урока</p>
+          <h3><button type="button" aria-expanded="true" aria-controls="m9">Нужна помощь</button></h3>
+          <p class="desc">Как распознать ситуации, в которых важно обратиться к специалисту, и понять первые действия.</p>
+          <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+        </article>
+        <div class="lessons" id="m9">
+          <p class="title">Уроки раздела «Нужна помощь»</p>
+          <ul>
+            <li><b>«Он целыми днями лежит и ничего не хочет»</b><span>Возраст это или болезнь и как довести подростка до врача</span></li>
+            <li><b>«Он сказал, что лучше бы его не было»</b><span>Что делать, если подросток говорит, что не хочет жить</span></li>
+            <li><b>«Я боюсь, что с ней что-то сделали»</b><span>Что делать, если подросток пережил насилие</span></li>
+            <li><b>«Куда звонить?»</b><span>Что делать в первые минуты, если с подростком беда</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Как устроен урок. Фрагменты дословно из урока «Мы же договаривались!» (Claude-документ 41652fac, rev 83) -->
+  <section class="how" id="urok">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Открывайте нужную тему, когда она пригодится</h2>
+      </div>
+      <div class="how-text">
+        <p>В каждом уроке: объяснение ситуации, подсказки для разговора, первый шаг и памятка, к которой можно вернуться.</p>
+        <p>Не нужно изучать весь курс заранее. Выберите вопрос, который беспокоит сейчас.</p>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="tag tag-blue">Фрагменты урока</span>
+          <h3>«Мы же договаривались!»: как договариваться с подростком, чтобы договоренности держались</h3>
+          <p class="from">Из раздела «Мы постоянно ссоримся»</p>
+        </div>
+        <div class="demo-grid">
+          <article class="demo-card">
+            <p class="demo-label">Объяснение</p>
+            <h4>Почему наказания помогают ненадолго</h4>
+            <p>Наказание останавливает подростка, пока он боится последствий. Но причина, из-за которой он нарушил правило, никуда не девается. Если дочери стыдно уходить с прогулки раньше всех, месяц дома этого стыда не уберет. Когда наказание кончится, она снова задержится, только постарается, чтобы вы не узнали.</p>
+          </article>
+          <article class="demo-card">
+            <p class="demo-label">Что сказать вместо</p>
+            <div class="say say-not">
+              <small>Когда хочется сказать</small>
+              <p>«Опять до ночи гуляла? Совсем совести нет»</p>
+            </div>
+            <div class="say say-yes">
+              <small>лучше скажите</small>
+              <p>«Ты третий раз приходишь позже. Что там происходит?»</p>
+            </div>
+          </article>
+          <article class="demo-card demo-memo">
+            <p class="demo-label">Памятка</p>
+            <p><b>Если сорвалось.</b> В момент сбоя одна спокойная фраза: «Я рада, что ты дома. Поговорим завтра». Назавтра спросите, что помешало, и доработайте договоренность. Последствие только то, о котором договорились заранее, короткое и связанное с нарушением. Телефон целиком и право позвать вас в беде не отбирают никогда.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Авторы и проверка -->
+  <section class="authors" id="avtory">
+    <div class="wrap">
+      <div class="authors-card">
+        <div class="head">
+          <span class="tag tag-blue">Кто делал курс</span>
+          <h2>Курс подготовлен редакцией НЭН</h2>
+        </div>
+        <div class="authors-text">
+          <p>Мы собрали ситуации, с которыми сталкиваются родители подростков, и разобрали, что можно сделать в каждой из них.</p>
+          <p>Материалы помогают выбрать следующий шаг и понять, когда стоит обратиться за профессиональной помощью.</p>
+          <!-- Эксперты: добавить после подтверждения редакцией. Строка на каждого:
+               <p><b>Имя Фамилия</b>, специализация. Прочитал(а) и одобрил(а) уроки раздела «…».</p>
+               Фразу «прочитаны и одобрены психиатром, психологом, юристом и врачом» ставить только после проверки. -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Стоимость -->
+  <section class="pricing" id="cena">
+    <div class="wrap">
+      <div class="price-panel">
+        <div class="price-copy">
+          <h2>Все 33 урока в одном курсе</h2>
+          <p class="includes">9 разделов · подсказки для разговоров · практические памятки</p>
+          <!-- Условия взяты с /perestan/ (та же платформа Школы). Сверить для этого курса. -->
+          <ul class="terms">
+            <li>Оплата разовая, без подписки. Все уроки открыты сразу после оплаты.</li>
+            <li>Доступ бессрочный. Когда меняются законы и телефоны служб, мы обновляем уроки без доплаты.</li>
+            <li>Оплата картой или через СБП на защищенной странице ЮKassa. Регистрация не нужна: кабинет создадим сами, чек и письмо придут на почту.</li>
+          </ul>
+        </div>
+        <div class="price-action">
+          <p class="price">4&nbsp;500&nbsp;₽</p>
+          <a class="btn" id="priceBuy" href="/course/podrostok/enroll/">Купить курс за 4&nbsp;500&nbsp;₽</a>
+          <p class="note">Начните с актуальной темы и возвращайтесь к материалам, когда понадобится.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="voprosy">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Частые вопросы</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Кому подойдет курс?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Родителям подростков 11–17 лет и всем взрослым, которые их растят: мамам, папам, отчимам, бабушкам. В примерах есть и дочери, и сыновья. Уроки о взрослении и о сексе написаны отдельно для разговора с дочерью и для разговора с сыном.</p>
+          </div>
+        </details>
+        <details>
+          <summary>С какого урока начать?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>С того, который про вашу ситуацию. Каждый урок понятен сам по себе, проходить их по порядку не нужно.</p>
+            <p>Если не знаете, с чего начать, откройте раздел «Мы постоянно ссоримся». В нем о том, что происходит с подростком, как сделать, чтобы он рассказывал сам, и что делать, если вы сорвались.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Как устроены уроки?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Это текстовые уроки, их удобно читать с телефона. В каждом есть объяснение ситуации, подсказки для разговора, первый шаг на ближайшие дни, ответы на частые вопросы родителей и памятка на одну страницу. Памятку можно перечитать перед трудным разговором.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Как получить доступ после оплаты?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Оплатите курс картой или через СБП на защищенной странице ЮKassa. Регистрироваться не нужно: личный кабинет создадим сами, чек и письмо придут на почту. Все уроки открыты сразу.</p>
+            <p>Если кабинет не открылся, напишите на <a href="mailto:support@n-e-n.ru">support@n-e-n.ru</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Это подписка? Сколько действует доступ?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Оплата разовая, доступ к курсу бессрочный. Законы, телефоны служб и схемы мошенников меняются, и мы обновляем уроки вслед за ними. Обновления появляются в вашем кабинете без доплаты.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Заменяет ли курс психолога или врача?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Нет. Курс помогает понять, что происходит, и выбрать следующий шаг. В каждом уроке сказано, при каких признаках пора к специалисту, а в разделе «Нужна помощь» разобрано, к кому идти и куда звонить.</p>
+            <p>Если подросток в опасности прямо сейчас, звоните 112.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Можно ли получить консультацию психолога?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <div class="answer">
+            <p>Да. Участники курса получают скидку на консультации психологов <a href="https://balansity.ru/" target="_blank" rel="noopener">Балансити</a>. Консультации покупаются отдельно, на сайте партнера.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Плашка с покупкой: та же форма оплаты, что у кнопок первого экрана и блока стоимости -->
+<aside class="sticky-cta" id="stickyCta" aria-label="Купить курс" hidden>
+  <div class="txt">
+    <p class="line"><span class="desk">33 ситуации. Подсказки, что сказать и с чего начать.</span><span class="mob">33 ситуации и конкретные шаги</span></p>
+    <p class="name">Курс «У меня подросток, помогите»</p>
+  </div>
+  <a class="btn" href="/course/podrostok/enroll/">Купить за 4&nbsp;500&nbsp;₽</a>
+</aside>
+
+<footer class="site-footer">
+  <div class="wrap">
+
+    <div class="help" id="pomosh">
+      <div>
+        <h2>Если с подростком беда прямо сейчас</h2>
+        <p class="lead">Бесплатно и анонимно. На телефоне доверия отвечают и подросткам, и родителям.</p>
+      </div>
+      <ul class="help-lines">
+        <li><a class="num" href="tel:112">112</a><span class="what">Подросток в опасности: скорая, полиция, спасатели</span></li>
+        <li><a class="num" href="tel:88002000122">8-800-2000-122</a><span class="what">Детский телефон доверия, если не знаете, что делать</span></li>
+        <li><a class="num" href="tel:124">124</a><span class="what">Тот же телефон доверия, короткий номер с мобильного</span></li>
+      </ul>
+      <p class="more">Подробнее о телефоне доверия — на сайте <a href="https://telefon-doveria.ru/" target="_blank" rel="noopener">telefon-doveria.ru</a></p>
+    </div>
+
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="/school/" aria-label="Школа НЭН">
+          <img src="https://n-e-n.ru/img/nen_logo_v3.svg" alt="НЭН — Нет, это нормально" width="112" height="32" loading="lazy">
+        </a>
+        <div class="socials">
+          <a href="https://t.me/net_etonorm" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212-.07-.062-.174-.041-.249-.024-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+          <a href="https://vk.com/net_eto_normalno" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.68 2 15.07 2Zm3.15 14.27h-1.44c-.55 0-.72-.44-1.71-1.43-.86-.83-1.24-.94-1.45-.94-.29 0-.38.08-.38.49v1.31c0 .35-.11.56-1.03.56-1.52 0-3.2-.92-4.39-2.63-1.79-2.5-2.28-4.38-2.28-4.77 0-.21.08-.4.49-.4h1.44c.37 0 .51.17.65.56.71 2.06 1.9 3.86 2.39 3.86.18 0 .27-.08.27-.55V11.1c-.06-1.04-.61-1.13-.61-1.5 0-.18.15-.36.39-.36h2.27c.31 0 .42.17.42.53v3.09c0 .31.14.42.23.42.18 0 .33-.11.66-.44 1.02-1.14 1.75-2.9 1.75-2.9.1-.21.27-.4.64-.4h1.44c.43 0 .53.22.43.53-.18.83-1.94 3.32-1.94 3.32-.15.25-.21.36 0 .64.15.21.65.64.98 1.03.61.69 1.07 1.27 1.2 1.67.12.4-.08.6-.49.6Z"/></svg></a>
+          <a href="https://dzen.ru/nenru" target="_blank" rel="noopener" aria-label="Дзен"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C6.984 0 3.973.213 2.093 2.093.213 3.973 0 6.984 0 12c0 5.016.213 8.027 2.093 9.907C3.973 23.787 6.984 24 12 24c5.016 0 8.027-.213 9.907-2.093C23.787 20.027 24 17.016 24 12c0-5.016-.213-8.027-2.093-9.907C20.027.213 17.016 0 12 0zm.545 2.19c.104 3.46.594 5.917 2.093 7.417 1.462 1.462 4.049 1.888 7.171 1.848v1.09c-3.122-.04-5.71.386-7.171 1.848-1.5 1.5-1.989 3.957-2.093 7.417h-1.09c-.104-3.46-.594-5.917-2.093-7.417-1.462-1.462-4.049-1.888-7.171-1.848v-1.09c3.122.04 5.71-.386 7.171-1.848 1.5-1.5 1.989-3.957 2.093-7.417h1.09z"/></svg></a>
+          <a href="https://ok.ru/netetonorm" target="_blank" rel="noopener" aria-label="Одноклассники"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.02 8.56c.92 0 1.67-.75 1.67-1.67 0-.93-.75-1.68-1.67-1.68-.93 0-1.68.75-1.68 1.68 0 .92.75 1.67 1.68 1.67m0 2.4A4.08 4.08 0 0 1 7.94 6.9a4.08 4.08 0 0 1 4.08-4.07A4.07 4.07 0 0 1 16.09 6.9a4.08 4.08 0 0 1-4.07 4.06m2.3 4.62c.83-.19 1.63-.52 2.36-.99a1.2 1.2 0 1 0-1.29-2.03c-2.06 1.31-4.68 1.31-6.74 0a1.2 1.2 0 0 0-1.29 2.03c.73.47 1.53.8 2.36.99l-2.27 2.28a1.2 1.2 0 0 0 1.7 1.7l2.2-2.21 2.21 2.21a1.2 1.2 0 0 0 1.7-1.7z"/></svg></a>
+          <a href="https://www.youtube.com/@netetonorm" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <p class="foot-legal">
+        <span class="age">18+</span>Курс издания «Нет, это нормально» для родителей подростков 11–17 лет.<br><br>
+        <a href="https://n-e-n.ru/oferta/">Оферта</a> · <a href="https://n-e-n.ru/privacy/">Политика конфиденциальности</a><br><br>
+        ООО «НЭН» · ИНН 9704078031 · ОГРН 1217700330913<br>
+        109341, г. Москва, ул. Братиславская, д. 6, к. 1, кв. 151 · +7 993 613-87-35 · support@n-e-n.ru
+      </p>
+    </div>
+    <div class="foot-bottom">© «Нет, это нормально». Используя сайт, вы соглашаетесь с условиями использования.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Программа: карточки раскрывают список уроков ──
+     Одна открытая панель за раз. Панели стоят в той же сетке, что и карточки;
+     открытой ставим order сразу после последней карточки её ряда. */
+  var grid = document.getElementById('programGrid');
+  if (grid) {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.mod'));
+    var buttons = cards.map(function(c){ return c.querySelector('h3 button'); });
+    var panels = buttons.map(function(b){ return document.getElementById(b.getAttribute('aria-controls')); });
+    var openIdx = -1;
+
+    var cols = function(){
+      return getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+    };
+    var place = function(){
+      var n = cols();
+      cards.forEach(function(c, i){ c.style.order = i * 2; });
+      if (openIdx < 0) return;
+      var last = Math.min((Math.floor(openIdx / n) + 1) * n - 1, cards.length - 1);
+      panels[openIdx].style.order = last * 2 + 1;
+    };
+    var setOpen = function(i){
+      openIdx = i;
+      cards.forEach(function(c, k){
+        var on = k === i;
+        c.classList.toggle('open', on);
+        buttons[k].setAttribute('aria-expanded', on ? 'true' : 'false');
+        panels[k].hidden = !on;
+      });
+      place();
+    };
+
+    setOpen(-1);
+    buttons.forEach(function(b, i){
+      b.addEventListener('click', function(){
+        var card = cards[i];
+        var before = card.getBoundingClientRect().top;
+        setOpen(openIdx === i ? -1 : i);
+        /* В одну колонку закрытие панели выше сдвигает карточку вверх — возвращаем её на место */
+        var after = card.getBoundingClientRect().top;
+        if (Math.abs(after - before) > 1) window.scrollBy(0, after - before);
+      });
+    });
+    window.addEventListener('resize', place);
+  }
+
+  /* ── Плашка с покупкой ──
+     Показываем, когда кнопка первого экрана ушла ВВЕРХ за край окна.
+     Прячем, пока на экране кнопка блока стоимости, и при возврате к первому экрану. */
+  var bar = document.getElementById('stickyCta');
+  var heroBtn = document.getElementById('heroBuy');
+  var priceBtn = document.getElementById('priceBuy');
+
+  if (bar && heroBtn && priceBtn && 'IntersectionObserver' in window) {
+    bar.hidden = false;
+    var heroPassed = false, priceVisible = false;
+    var sync = function(){ bar.classList.toggle('show', heroPassed && !priceVisible); };
+
+    new IntersectionObserver(function(entries){
+      var e = entries[0];
+      heroPassed = !e.isIntersecting && e.boundingClientRect.bottom <= 0;
+      sync();
+    }).observe(heroBtn);
+
+    new IntersectionObserver(function(entries){
+      priceVisible = entries[0].isIntersecting;
+      sync();
+    }).observe(priceBtn);
+  }
+})();
+</script>
+<!-- Метрика: общий счетчик сайта (41151484) + счетчик Школы (110396040), как на /perestan/.
+     Включается только на n-e-n.ru, чтобы локальные просмотры не попадали в статистику.
+     Цель buy_click вешается на клик по ссылке /enroll. -->
+<script>if(/(^|\.)n-e-n\.ru$/.test(location.hostname)){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(41151484,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});ym(110396040,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});window.schTrack=function(g){try{window.ym&&ym(110396040,"reachGoal",g)}catch(e){}};document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href")||"";if(h.indexOf("/enroll")>-1){schTrack("buy_click")}},true);}</script>
+</body>
+</html>
