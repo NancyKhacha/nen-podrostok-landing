@@ -125,11 +125,9 @@
   .hero .who{font-weight:500;font-size:18px}
   .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:6px}
   .hero .facts{font-size:var(--fs-sm);color:var(--muted);font-weight:500}
-  .hero-art{
-    aspect-ratio:1200 / 630;border-radius:var(--radius);overflow:hidden;
-    background:#cdcbf9; /* цвет фона самой обложки, пока она грузится */
-  }
-  .hero-art img{width:100%;height:100%;object-fit:cover}
+  /* Квадратная черно-белая графика без фона, как у /perestan/ */
+  .hero-art{aspect-ratio:1 / 1;width:min(100%,500px);justify-self:end}
+  .hero-art img{width:100%;height:100%;object-fit:contain}
 
   /* ───────────── Программа ─────────────
      Карточки и панели уроков — соседи в одной сетке. Скрипт ставит открытой панели
@@ -311,7 +309,7 @@
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:28px}
     .hero-copy{max-width:none}
-    .hero-art{order:-1}
+    .hero-art{order:-1;width:min(100%,280px);justify-self:center}
     .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .demo-grid{grid-template-columns:1fr}
     .authors-card{grid-template-columns:1fr}
@@ -375,9 +373,9 @@
         <p class="facts">33 урока · 9 разделов · доступ навсегда</p>
       </div>
       <div class="hero-art">
-        <!-- Обложка НЭН к тексту «Как общаться с подростком, чтобы сохранить доверие» (13.03.2025).
-             Заменить на иллюстрацию курса, когда она будет готова. -->
-        <img src="images/hero.jpg" alt="Подросток кричит, скрестив руки, мама заглядывает в дверь" width="1200" height="630" fetchpriority="high">
+        <!-- Фрагмент обложки НЭН к тексту «Как общаться с подростком, чтобы сохранить доверие» (13.03.2025),
+             переведен в черно-белый контур без фона. Заменить на иллюстрацию курса, когда она будет готова. -->
+        <img src="images/hero.png" alt="Подросток скрестил руки и кричит" width="1200" height="1200" fetchpriority="high">
       </div>
     </div>
   </section>
