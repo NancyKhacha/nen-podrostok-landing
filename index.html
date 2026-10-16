@@ -338,7 +338,8 @@
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:28px}
     .hero-copy{max-width:none}
-    .hero-art{width:min(100%,320px);justify-self:center}
+    /* На мобильном иллюстрация над заголовком; размер такой, чтобы кнопка оставалась близко к первому экрану */
+    .hero-art{order:-1;width:min(100%,260px);justify-self:center}
     .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .demo-grid{grid-template-columns:1fr}
     .screens{grid-template-columns:1fr;max-width:620px}
@@ -349,6 +350,9 @@
   }
   @media (max-width:640px){
     :root{--bar-h:68px}
+    .hero{padding-top:16px}
+    .hero-grid{gap:16px}
+    .hero-art{width:min(100%,230px)}
     .program-grid{grid-template-columns:1fr;gap:12px}
     .lessons{padding:20px}
     .lessons ul{grid-template-columns:1fr}
