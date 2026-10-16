@@ -83,11 +83,11 @@
   /* ───────────── Кнопка, ссылка, тег ───────────── */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;
-    /* Фирменный оранжевый #FB6326 с темной подписью, как главная кнопка кабинета НЭН
-       (frontend/web/css/club-lk.css): самый заметный цвет системы, «здесь про деньги». */
-    background:var(--nen-orange-500);color:var(--nen-ink);
+    /* Фирменное сочетание из логотипа Школы НЭН: белый на оранжевом #FB6326.
+       Контраст 3:1, поэтому подпись жирная и с легкой тенью. */
+    background:var(--nen-orange-500);color:var(--nen-white);text-shadow:0 1px 2px rgba(120,40,0,.28);
     box-shadow:0 6px 18px rgba(251,99,38,.32);
-    font-family:var(--display);font-weight:600;font-size:var(--fs-sm);line-height:1.4;
+    font-family:var(--display);font-weight:700;font-size:var(--fs-sm);line-height:1.4;
     text-decoration:none;text-align:center;white-space:nowrap;
     padding:19px 48px 17px;border:0;border-radius:var(--radius-pill);cursor:pointer;
     transition:transform .3s cubic-bezier(.16,1,.3,1),filter .2s;
@@ -95,7 +95,7 @@
   .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 10px 24px rgba(251,99,38,.42)}
   .btn:active{transform:translateY(0)}
   .btn:focus-visible{outline:3px solid var(--nen-blue-500);outline-offset:3px}
-  .btn-ghost{background:transparent;color:var(--nen-blue-900);border:2px solid var(--nen-blue-200);padding:11px 22px 9px;font-size:var(--fs-xs);box-shadow:none;font-weight:500}
+  .btn-ghost{background:transparent;color:var(--nen-blue-900);border:2px solid var(--nen-blue-200);padding:11px 22px 9px;font-size:var(--fs-xs);box-shadow:none;font-weight:500;text-shadow:none}
   .btn-ghost:hover{filter:none;border-color:var(--nen-blue-500);box-shadow:none}
 
   .link-down{
@@ -118,6 +118,7 @@
   .site-header .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .site-header .logo{flex:none;display:inline-flex;align-items:center}
   .site-header .logo img{height:36px;width:auto}
+  .site-header .btn-ghost{padding:7px 14px 6px;font-size:12px;border-width:1.5px}
 
   /* ───────────── Первый экран ───────────── */
   .hero{padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(32px,4vw,48px)}
@@ -351,6 +352,7 @@
   @media (max-width:640px){
     :root{--bar-h:68px}
     .site-header .logo img{height:30px}
+    .site-header .btn-ghost{padding:6px 12px 5px;font-size:11px}
     .hero{padding-top:16px}
     .hero-grid{gap:16px}
     .hero-art{width:min(100%,230px)}
