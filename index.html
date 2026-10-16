@@ -6,10 +6,10 @@
 <title>Курс «У меня подросток, помогите» — НЭН</title>
 <!-- Адрес и ссылка на оплату — как у действующей страницы n-e-n.ru/podrostok/landing/ -->
 <link rel="canonical" href="https://n-e-n.ru/podrostok/landing/">
-<meta name="description" content="Самый полный курс НЭН о жизни с подростком 11–17 лет, сделанный вместе с сервисом психологической помощи Балансити: телефон, школа, вейпы, первая любовь, травля, депрессия. 4500 ₽, доступ навсегда.">
+<meta name="description" content="Курс НЭН для родителей подростков 11–17 лет: 33 ситуации из жизни с подростком. Что происходит, что можно сказать и когда пора обращаться за помощью. 4500 ₽, доступ навсегда.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="У меня подросток, помогите — курс НЭН">
-<meta property="og:description" content="Что происходит с подростком, что ему сказать вместо привычного крика и когда пора к специалисту. Курс НЭН для родителей детей 11–17 лет.">
+<meta property="og:description" content="Как поговорить об учебе и снова не поссориться? Что делать с телефоном, грубостью и вечным «я сам»? 33 ситуации из жизни с подростком.">
 <meta property="og:image" content="https://n-e-n.ru/images/2025-03-13/67d2e83832a80_1200x630.jpg">
 <meta property="og:url" content="https://n-e-n.ru/podrostok/landing/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,7 @@
     --nen-orange-600:#cc3d04;   /* текст и кнопки с белым текстом: 4,96:1 */
     --nen-white:#fff;
     --muted:#5d628c;            /* blue-900 на 72% поверх pink-50: подписи */
+    --nen-ink:#222329;          /* neutral-900: подпись на оранжевой кнопке, 5,2:1 */
 
     --display:"Unbounded",system-ui,-apple-system,sans-serif;
     --text:"Golos Text",system-ui,-apple-system,sans-serif;
@@ -53,7 +54,7 @@
   }
 
   *,*::before,*::after{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:16px;scroll-padding-bottom:calc(var(--bar-h) + 16px)}
   body{
     margin:0;
     background:var(--nen-pink-50);
@@ -82,17 +83,20 @@
   /* ───────────── Кнопка, ссылка, тег ───────────── */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;
-    background:var(--nen-orange-600);color:var(--nen-white);
-    font-family:var(--display);font-weight:500;font-size:var(--fs-sm);line-height:1.4;
+    /* Фирменный оранжевый #FB6326 с темной подписью, как главная кнопка кабинета НЭН
+       (frontend/web/css/club-lk.css): самый заметный цвет системы, «здесь про деньги». */
+    background:var(--nen-orange-500);color:var(--nen-ink);
+    box-shadow:0 6px 18px rgba(251,99,38,.32);
+    font-family:var(--display);font-weight:600;font-size:var(--fs-sm);line-height:1.4;
     text-decoration:none;text-align:center;white-space:nowrap;
     padding:19px 48px 17px;border:0;border-radius:var(--radius-pill);cursor:pointer;
     transition:transform .3s cubic-bezier(.16,1,.3,1),filter .2s;
   }
-  .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 10px 24px rgba(251,99,38,.42)}
   .btn:active{transform:translateY(0)}
   .btn:focus-visible{outline:3px solid var(--nen-blue-500);outline-offset:3px}
-  .btn-ghost{background:transparent;color:var(--nen-blue-900);border:2px solid var(--nen-blue-200);padding:11px 22px 9px;font-size:var(--fs-xs)}
-  .btn-ghost:hover{filter:none;border-color:var(--nen-blue-500)}
+  .btn-ghost{background:transparent;color:var(--nen-blue-900);border:2px solid var(--nen-blue-200);padding:11px 22px 9px;font-size:var(--fs-xs);box-shadow:none;font-weight:500}
+  .btn-ghost:hover{filter:none;border-color:var(--nen-blue-500);box-shadow:none}
 
   .link-down{
     font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-blue-700);
@@ -123,22 +127,13 @@
   .hero h1 em{font-style:normal;color:var(--nen-orange-600)}
   .hero .sub{font-family:var(--display);font-weight:500;font-size:var(--fs-lead);line-height:1.45}
   .hero .lead{font-size:18px;line-height:1.55}
-  .hero .who{font-weight:600;font-size:var(--fs-sm);color:var(--nen-blue-700)}
+  .hero .eyebrow{font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--nen-blue-700)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips li{font-family:var(--display);font-weight:500;font-size:13px;line-height:1;padding:9px 14px 8px;border-radius:999px;background:var(--nen-white);border:1px solid var(--nen-pink-200);color:var(--nen-blue-900)}
   .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:6px}
   /* Квадратная черно-белая графика без фона, как у /perestan/ */
   .hero-art{aspect-ratio:1 / 1;width:min(100%,500px);justify-self:end}
   .hero-art img{width:100%;height:100%;object-fit:contain}
-
-  /* ───────────── Фактоиды под первым экраном ───────────── */
-  .facts-grid{
-    background:var(--nen-blue-900);color:var(--nen-blue-50);border-radius:var(--radius);
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-    padding:clamp(24px,3vw,36px) clamp(8px,1.5vw,16px);
-  }
-  .facts-grid li{display:flex;flex-direction:column;gap:8px;padding:4px clamp(16px,2vw,28px);min-width:0}
-  .facts-grid li + li{border-left:1px solid rgba(241,244,255,.18)}
-  .facts-grid b{font-family:var(--display);font-weight:600;font-size:clamp(22px,1.2vw + 12px,30px);line-height:1.1;color:var(--nen-white);white-space:nowrap}
-  .facts-grid span{font-size:15px;line-height:1.45;color:var(--nen-blue-200)}
 
   /* ───────────── Программа ─────────────
      Карточки и панели уроков — соседи в одной сетке. Скрипт ставит открытой панели
@@ -166,6 +161,10 @@
   }
   .mod .more svg{width:14px;height:14px;transition:transform .3s cubic-bezier(.16,1,.3,1)}
   .mod.open{background:var(--nen-blue-50);border-color:var(--nen-blue-500)}
+  .mod-calm{background:var(--nen-blue-50);border-color:var(--nen-blue-200)}
+  .mod-calm:hover{transform:none}
+  .mod .help-free{position:relative;z-index:1;align-self:flex-start;font-weight:600;color:var(--nen-blue-700);text-decoration:underline;text-underline-offset:4px}
+  .mod .help-free:focus-visible{outline:3px solid var(--nen-blue-500);outline-offset:2px;border-radius:4px}
   .mod.open .more svg{transform:rotate(180deg)}
   .mod .more .when-open{display:none}
   .mod.open .more .when-open{display:inline}
@@ -185,7 +184,7 @@
 
   /* ───────────── Как устроен урок ───────────── */
   .how-text{display:flex;flex-direction:column;gap:10px;font-size:18px;font-weight:500;max-width:760px;margin-bottom:32px}
-  .screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-bottom:40px}
+  .screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
   .screens figure{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
   .screens a{display:block;border-radius:var(--radius);overflow:hidden;border:1px solid var(--nen-blue-200);background:var(--nen-white);box-shadow:0 10px 30px rgba(37,47,103,.08);transition:transform .3s cubic-bezier(.16,1,.3,1)}
   .screens a:hover{transform:translateY(-3px)}
@@ -206,8 +205,11 @@
     background:var(--nen-pink-50);color:var(--nen-blue-900);border-radius:var(--radius);
     padding:24px 22px;display:flex;flex-direction:column;gap:12px;min-width:0;
   }
-  .demo-label{font-family:var(--display);font-weight:500;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--nen-blue-700)}
+  .demo-label{font-family:var(--display);font-weight:600;font-size:15px;color:var(--nen-blue-700)}
   .demo-card h4{font-size:17px;font-weight:500;line-height:1.4;color:var(--nen-blue-700)}
+  .demo-card .demo-sub{font-size:var(--fs-sm);color:var(--muted);margin-top:-8px}
+  .demo-memo .demo-sub{color:var(--nen-blue-50)}
+  .demo-card .say-after{font-size:15px;color:var(--muted)}
   .say{border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:4px}
   .say small{font-size:var(--fs-sm);font-weight:500}
   .say p{font-weight:500;font-size:17px;line-height:1.45}
@@ -226,7 +228,12 @@
   .authors-card .head{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
   .authors-text{display:flex;flex-direction:column;gap:14px;font-size:18px}
   .authors-text a{color:var(--nen-blue-700);font-weight:600}
-  .authors-text .approved{font-weight:700}
+  .team-title{font-size:18px;font-weight:600;margin-top:8px}
+  .team{display:grid;gap:12px}
+  .team li{position:relative;padding-left:24px;display:flex;flex-direction:column;gap:2px}
+  .team li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--nen-orange-500)}
+  .team b{font-weight:600}
+  .team span{color:var(--muted);font-size:16px}
 
   /* ───────────── Стоимость ───────────── */
   .price-panel{
@@ -236,10 +243,7 @@
   .price-copy{display:flex;flex-direction:column;gap:14px}
   .price-copy h2{color:var(--nen-blue-50)}
   .price-copy .lead{font-size:18px;color:var(--nen-blue-50);max-width:46ch}
-  .price-copy .motto{font-family:var(--display);font-weight:500;color:var(--nen-pink-200);margin-top:6px}
-  .incl{display:grid;gap:10px;margin:4px 0 6px}
-  .incl li{position:relative;padding-left:28px;color:var(--nen-blue-50)}
-  .incl li::before{content:"";position:absolute;left:2px;top:.42em;width:14px;height:8px;border-left:2.5px solid var(--nen-orange-500);border-bottom:2.5px solid var(--nen-orange-500);transform:rotate(-45deg)}
+  .price-action .includes{font-size:15px;color:var(--nen-blue-50);line-height:1.5}
   .price-action .name{font-family:var(--display);font-weight:500;font-size:var(--fs-sm);color:var(--nen-blue-200)}
   .price-action{
     background:rgba(241,244,255,.06);border:1px solid rgba(241,244,255,.16);border-radius:var(--radius);
@@ -274,8 +278,14 @@
   }
   .help{
     border:1.5px dashed rgba(241,244,255,.35);border-radius:var(--radius);
-    padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:20px 48px;align-items:start;margin-bottom:48px;
+    padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-bottom:48px;
   }
+  .help .help-q{font-family:var(--display);font-weight:500;color:var(--nen-blue-200)}
+  .help .help-link{font-family:var(--display);font-weight:600;font-size:clamp(20px,1.2vw + 14px,28px);line-height:1.3;color:var(--nen-white);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+  .help .help-link:hover{color:var(--nen-pink-200)}
+  .help .help-link:focus-visible{outline:2px solid var(--nen-blue-50);outline-offset:4px;border-radius:4px}
+  .help .help-note{font-size:var(--fs-sm);color:var(--nen-blue-200);max-width:70ch}
+  .help .help-note a{color:var(--nen-blue-50);white-space:nowrap}
   .help h2{font-size:var(--fs-h3);font-weight:600;color:var(--nen-blue-50)}
   .help .lead{margin-top:10px;color:var(--nen-blue-200)}
   .help-lines{display:flex;flex-wrap:wrap;gap:20px 32px}
@@ -328,12 +338,11 @@
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:28px}
     .hero-copy{max-width:none}
-    .hero-art{order:-1;width:min(100%,280px);justify-self:center}
+    .hero-art{width:min(100%,320px);justify-self:center}
     .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .demo-grid{grid-template-columns:1fr}
     .screens{grid-template-columns:1fr;max-width:620px}
-    .facts-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}
-    .facts-grid li:nth-child(3){border-left:0}
+
     .authors-card{grid-template-columns:1fr}
     .faq .wrap{grid-template-columns:1fr}
     .faq .section-head{position:static}
@@ -348,16 +357,13 @@
     .btn{padding-inline:24px}
     .price-action{padding:22px}
     .help-lines{flex-direction:column;gap:16px}
-    .facts-grid li{padding-inline:12px}
-    .facts-grid b{font-size:18px}
-    .facts-grid span{font-size:14px}
     .faq-list summary{font-size:17px;padding:18px}
     .faq-list .answer{padding:0 18px 18px}
     .sticky-cta{width:100%;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px)) 18px;gap:12px}
     .sticky-cta .desk,.sticky-cta .name{display:none}
-    .sticky-cta .line{font-family:var(--text);font-weight:600;font-size:15px;line-height:1.3}
+    .sticky-cta .line{font-family:var(--text);font-weight:600;font-size:14px;line-height:1.3}
     .sticky-cta .mob{display:inline}
-    .sticky-cta .btn{padding:14px 20px 12px;font-size:13px}
+    .sticky-cta .btn{padding:14px 16px 12px;font-size:13px}
   }
   @media (max-width:360px){
     .sticky-cta .line{font-size:13px}
@@ -386,35 +392,20 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="tag tag-blue">НЭН × Балансити</span>
+        <p class="eyebrow">Курс НЭН для родителей подростков 11–17 лет</p>
         <h1>У меня подросток, <em>помогите</em></h1>
-        <p class="sub">Самый полный курс НЭН о жизни с подростком</p>
-        <p class="lead">Телефон, школа, вейпы, первая любовь, травля, депрессия. Курс поможет понять, что происходит с ребенком, что ему сказать вместо привычного крика и когда пора к специалисту.</p>
-        <p class="who">Для родителей подростков 11–17 лет</p>
+        <p class="lead">Как поговорить об учебе и снова не поссориться? Что делать с телефоном, грубостью и вечным «я сам»? Собрали 33 ситуации из жизни с подростком: разбираемся, что происходит, что можно сказать и когда пора обращаться за помощью.</p>
         <div class="hero-cta">
-          <!-- Все кнопки покупки ведут на одну форму оплаты. Slug курса сверить. -->
           <a class="btn" id="heroBuy" href="https://n-e-n.ru/course/podrostok/enroll/">Купить курс за 4&nbsp;500&nbsp;₽</a>
-          <a class="link-down" href="#programma">Посмотреть программу&nbsp;↓</a>
+          <a class="link-down" href="#programma">Что внутри&nbsp;↓</a>
         </div>
+        <ul class="chips" aria-label="Коротко о курсе"><li>33 урока</li><li>9 разделов</li><li>доступ навсегда</li></ul>
       </div>
       <div class="hero-art">
         <!-- Обложка НЭН к тексту «Как общаться с подростком, чтобы сохранить доверие» (13.03.2025):
-             переведена в черно-белый контур без фона и перекомпонована в квадрат.
-             Заменить на иллюстрацию курса, когда она будет готова. -->
+             переведена в черно-белый контур без фона и перекомпонована в квадрат. -->
         <img src="images/hero.png" alt="Подросток скрестил руки и кричит, мама выглядывает из-за двери" width="1200" height="1200" fetchpriority="high">
       </div>
-    </div>
-  </section>
-
-  <!-- Фактоиды: что входит в курс (данные с n-e-n.ru/podrostok/landing/) -->
-  <section class="facts" aria-label="Что входит в курс">
-    <div class="wrap">
-      <ul class="facts-grid">
-        <li><b>33 урока</b><span>в тексте и аудио: читайте вечером или слушайте по дороге</span></li>
-        <li><b>44 вопроса</b><span>в квизах с разбором ответов, без оценок и баллов</span></li>
-        <li><b>Памятки</b><span>к каждой ситуации: сохраните на телефон или распечатайте</span></li>
-        <li><b>Навсегда</b><span>разовая оплата, без подписки</span></li>
-      </ul>
     </div>
   </section>
 
@@ -422,15 +413,15 @@
   <section class="program" id="programma">
     <div class="wrap">
       <div class="section-head">
-        <h2>Выберите то, что происходит у вас дома</h2>
-        <p>Девять разделов, от ежедневных ссор до ситуаций, когда нужен врач. Нажмите на раздел, чтобы увидеть уроки.</p>
+        <h2>Что у вас случилось?</h2>
+        <p>Опять поссорились из-за телефона? Подросток не хочет в школу? Или нужно поговорить о сексе, а вы пока не представляете как? Выбирайте раздел. Читать все с первого урока необязательно.</p>
       </div>
 
       <div class="program-grid" id="programGrid">
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m1">Мы постоянно ссоримся</button></h3>
-          <p class="desc">Вчерашний ребенок хлопает дверью и на все отвечает «нормально». Что с ним происходит, как договариваться и что делать, если сорвались вы.</p>
+          <p class="desc">Начали с уроков, закончили хлопнувшей дверью. Как разговаривать, договариваться и возвращаться к разговору после ссоры.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m1">
@@ -445,7 +436,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m2">Дома</button></h3>
-          <p class="desc">Хамство, мат, вранье и носки посреди комнаты. Отдельный урок о том, что делать, если подросток поднял на вас руку.</p>
+          <p class="desc">Грубит, врет, не убирает за собой. Разбираемся, о чем договариваться и что делать, когда договоренности не работают.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m2">
@@ -460,7 +451,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m3">Экран и сеть</button></h3>
-          <p class="desc">Телефон до трех ночи, домашка от нейросети, «легкая подработка» от незнакомца и фото, которое не стоило отправлять.</p>
+          <p class="desc">Телефон все время в руках, а что в нем происходит, непонятно. Обсуждаем экранное время, нейросети, мошенников и личную информацию.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m3">
@@ -475,7 +466,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m4">Школа</button></h3>
-          <p class="desc">Двойки, которые его не волнуют, ОГЭ, ЕГЭ и выбор после школы. И утро, когда он говорит, что больше туда не пойдет.</p>
+          <p class="desc">Оценки, экзамены и «я туда больше не пойду». Как обсуждать учебу и выбор после школы, когда у вас разные планы.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m4">
@@ -489,7 +480,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m5">Свобода и риски</button></h3>
-          <p class="desc">Прогулки допоздна и телефон вне зоны доступа, деньги каждый день, вейп в кармане и первый раз пьяным.</p>
+          <p class="desc">Можно погулять подольше? А денег побольше? Как обсуждать самостоятельность, вейпы и алкоголь, когда запретом разговор не заканчивается.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m5">
@@ -504,7 +495,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m6">Тело</button></h3>
-          <p class="desc">Месячные, о которых не успели поговорить, сын, который ничего не спрашивает, и «я толстая» перед зеркалом.</p>
+          <p class="desc">Тело меняется, собственная внешность не нравится, ваши комментарии тоже. Как говорить о взрослении, внешности и здоровье.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m6">
@@ -518,7 +509,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m7">Любовь и секс</button></h3>
-          <p class="desc">Первая любовь подростка и разговор о сексе. Для дочери и для сына отдельные уроки.</p>
+          <p class="desc">Первая любовь, согласие и ответственность. Что стоит обсудить, даже если обоим немного неловко.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m7">
@@ -532,7 +523,7 @@
 
         <article class="mod">
           <h3><button type="button" aria-expanded="true" aria-controls="m8">Друзья и семья</button></h3>
-          <p class="desc">Компания, которая вам не нравится, травля с обеих сторон и папа с бабушкой, у которых свои правила.</p>
+          <p class="desc">С кем дружит, с кем ссорится и почему у бабушки можно то, чего нельзя дома. Разбираем отношения со сверстниками, травлю и разные правила взрослых.</p>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m8">
@@ -545,9 +536,10 @@
           </ul>
         </div>
 
-        <article class="mod">
+        <article class="mod mod-calm">
           <h3><button type="button" aria-expanded="true" aria-controls="m9">Нужна помощь</button></h3>
-          <p class="desc">Когда это уже не возраст: лежит целыми днями, говорит, что не хочет жить, с ним что-то случилось. Что делать в первые минуты и куда звонить.</p>
+          <p class="desc">Как заметить признаки серьезного неблагополучия, когда обращаться к специалисту и что делать в кризисной ситуации.</p>
+          <a class="help-free" href="https://n-e-n.ru/podrostok/kuda-zvonit/">Бесплатная справка: куда обратиться за помощью</a>
           <p class="more" aria-hidden="true"><span class="when-closed">Показать уроки</span><span class="when-open">Скрыть уроки</span><svg viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
         </article>
         <div class="lessons" id="m9">
@@ -564,60 +556,65 @@
     </div>
   </section>
 
-  <!-- Как устроен курс: скриншоты с n-e-n.ru/podrostok/landing/, фрагменты дословно из урока «Мы же договаривались!» -->
+  <!-- Как устроен урок. Фрагменты дословно из урока «Сколько можно сидеть в телефоне!»
+       (Claude-документ 1258894e, вкладка 1662792b); скриншоты — с n-e-n.ru/podrostok/landing/ -->
   <section class="how" id="kurs">
     <div class="wrap">
       <div class="section-head">
-        <h2>Каждый раздел можно открыть отдельно</h2>
+        <h2>Откройте то, что нужно сегодня</h2>
       </div>
       <div class="how-text">
-        <p>Курс собран из девяти самостоятельных разделов. Начните с того, что происходит дома сейчас. Остальные подождут, пока подросток до них дорастет.</p>
-        <p>В каждом уроке объяснение, что происходит, подсказки, что сказать, первый шаг на ближайшие дни и памятка. Урок можно прочитать за 15–25 минут или послушать.</p>
+        <p>Сегодня поссорились из-за прогулки, через неделю возник вопрос про карманные деньги. К урокам можно возвращаться в любом порядке.</p>
+        <p>Внутри разбираем, что происходит, какие слова могут помочь и с чего начать. Рядом есть памятка, чтобы потом не искать нужное по всему уроку.</p>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <h3>«Сколько можно сидеть в телефоне!»: как вернуть сон, ужины и живые разговоры, не отбирая телефон</h3>
+          <p class="from">Пример из раздела «Экран и сеть»</p>
+        </div>
+        <div class="demo-grid">
+          <article class="demo-card">
+            <p class="demo-label">Что происходит</p>
+            <p class="demo-sub">Объяснение ситуации</p>
+            <h4>Когда «щас, последняя катка»</h4>
+            <p>Во многих онлайн-играх выйти посреди матча, или «катки», значит бросить команду. Товарищи остаются вчетвером против пятерых, а вышедшему засчитывают поражение и снижают рейтинг. Поэтому «выключи немедленно» для него звучит как «подведи друзей и получи штраф».</p>
+          </article>
+          <article class="demo-card">
+            <p class="demo-label">Что сказать</p>
+            <p class="demo-sub">Подсказки для разговора</p>
+            <div class="say say-not">
+              <small>Когда хочется крикнуть</small>
+              <p>«Выключай немедленно»</p>
+            </div>
+            <div class="say say-yes">
+              <small>лучше скажите за одну игру до срока</small>
+              <p>«Скоро последняя. Начнешь ее, и заканчиваем»</p>
+            </div>
+            <p class="say-after">На его «последняя» достаточно ответить «принято», а когда он скажет «все, вышел», поблагодарить.</p>
+          </article>
+          <article class="demo-card demo-memo">
+            <p class="demo-label">Что попробовать</p>
+            <p class="demo-sub">Первый шаг и памятка</p>
+            <p><b>Первый шаг.</b> Выберите одно: полка для телефонов на ночь, корзина за ужином или договор о последней игре.</p>
+            <p><b>Из памятки.</b> Договоритесь о начале последней игры, а не о времени конца: «последнюю начинаю не позже девяти». Посреди матча интернет не выключать. Сорвался срок: разговор на следующий день, не ночью.</p>
+          </article>
+        </div>
       </div>
 
       <div class="screens">
         <figure>
           <a href="images/course-home.png" target="_blank" rel="noopener" aria-label="Открыть крупно каталог ситуаций"><img src="images/course-home.png" alt="Каталог курса: фразы родителей и уроки, которые им соответствуют" width="1360" height="760" loading="lazy"></a>
-          <figcaption><h3>Найдите свою ситуацию</h3><p>Узнайте свою фразу в каталоге и откройте нужный урок.</p></figcaption>
+          <figcaption><h3>Каталог ситуаций</h3></figcaption>
         </figure>
         <figure>
-          <a href="images/course-lesson.png" target="_blank" rel="noopener" aria-label="Открыть крупно страницу урока"><img src="images/course-lesson.png" alt="Урок «Мы же договаривались!»: аудиоверсия, раздел «Коротко» и содержание курса" width="1360" height="880" loading="lazy"></a>
-          <figcaption><h3>Читайте или слушайте</h3><p>У каждого урока есть аудиоверсия, содержание курса всегда слева.</p></figcaption>
+          <a href="images/course-lesson.png" target="_blank" rel="noopener" aria-label="Открыть крупно страницу урока"><img src="images/course-lesson.png" alt="Страница урока: аудиоверсия, раздел «Коротко» и содержание курса" width="1360" height="880" loading="lazy"></a>
+          <figcaption><h3>Урок: текст и аудиоверсия</h3></figcaption>
         </figure>
         <figure>
-          <a href="images/course-quiz.png" target="_blank" rel="noopener" aria-label="Открыть крупно квиз"><img src="images/course-quiz.png" alt="Квиз «Проверьте себя»: ситуация из урока и три варианта ответа" width="1360" height="880" loading="lazy"></a>
-          <figcaption><h3>Проверьте себя</h3><p>Квиз на ситуациях из урока: после ответа пояснение, баллов нет.</p></figcaption>
+          <a href="images/course-quiz.png" target="_blank" rel="noopener" aria-label="Открыть крупно квиз"><img src="images/course-quiz.png" alt="Квиз «Проверьте себя»: ситуация из урока и варианты ответа" width="1360" height="880" loading="lazy"></a>
+          <figcaption><h3>Квиз по уроку</h3></figcaption>
         </figure>
-      </div>
-
-      <div class="demo">
-        <div class="demo-head">
-          <span class="tag tag-blue">Фрагменты урока</span>
-          <h3>«Мы же договаривались!»: как договариваться с подростком, чтобы договоренности держались</h3>
-          <p class="from">Из раздела «Мы постоянно ссоримся»</p>
-        </div>
-        <div class="demo-grid">
-          <article class="demo-card">
-            <p class="demo-label">Объяснение</p>
-            <h4>Почему наказания помогают ненадолго</h4>
-            <p>Наказание останавливает подростка, пока он боится последствий. Но причина, из-за которой он нарушил правило, никуда не девается. Если дочери стыдно уходить с прогулки раньше всех, месяц дома этого стыда не уберет. Когда наказание кончится, она снова задержится, только постарается, чтобы вы не узнали.</p>
-          </article>
-          <article class="demo-card">
-            <p class="demo-label">Что сказать вместо</p>
-            <div class="say say-not">
-              <small>Когда хочется сказать</small>
-              <p>«Опять до ночи гуляла? Совсем совести нет»</p>
-            </div>
-            <div class="say say-yes">
-              <small>лучше скажите</small>
-              <p>«Ты третий раз приходишь позже. Что там происходит?»</p>
-            </div>
-          </article>
-          <article class="demo-card demo-memo">
-            <p class="demo-label">Памятка</p>
-            <p><b>Если сорвалось.</b> В момент сбоя одна спокойная фраза: «Я рада, что ты дома. Поговорим завтра». Назавтра спросите, что помешало, и доработайте договоренность. Последствие только то, о котором договорились заранее, короткое и связанное с нарушением. Телефон целиком и право позвать вас в беде не отбирают никогда.</p>
-          </article>
-        </div>
       </div>
     </div>
   </section>
@@ -627,15 +624,19 @@
     <div class="wrap">
       <div class="authors-card">
         <div class="head">
-          <span class="tag tag-blue">Кто делал курс</span>
-          <h2>Курс сделали редакция НЭН и Балансити</h2>
+          <h2>Кто все это собрал</h2>
         </div>
         <div class="authors-text">
-          <p>Курс мы сделали вместе с <a href="https://balansity.ru/" target="_blank" rel="noopener">Балансити</a>, сервисом психологической помощи для детей, подростков и родителей.</p>
-          <p>Десять лет НЭН пишет о детях и родителях и читает, что вы рассказываете в комментариях. Из этих историй и вопросов собраны уроки. В каждом разобрано, что можно сделать самим, и отдельно сказано, когда без врача или психолога не обойтись.</p>
-          <p class="approved">Уроки прочитали и одобрили профильные специалисты: подростковый психиатр, психолог, юрист и врач.</p>
-          <!-- Имена и специализации экспертов можно добавить строкой на каждого:
-               <p><b>Имя Фамилия</b>, специализация. Прочитал(а) и одобрил(а) уроки раздела «…».</p> -->
+          <p>Редакция НЭН пишет о родительстве, в котором люди устают, злятся, мирятся и иногда совсем не знают, что делать. С подростками тоже.</p>
+          <p>В этом курсе мы собрали вопросы, которые возникают дома, в школе и после очередного непростого разговора. И разобрали, что может помочь родителю.</p>
+          <h3 class="team-title">Кто работал над материалами</h3>
+          <ul class="team">
+            <li><b>Редакция НЭН</b><span>авторы уроков</span></li>
+            <li><b>Балансити</b><span>сервис психологической помощи для детей, подростков и родителей, соавтор курса</span></li>
+            <li><b>Подростковый психиатр, психолог, юрист и врач</b><span>рецензенты: каждый прочитал уроки по своей теме</span></li>
+            <!-- По ТЗ: подтвержденные имена, специализация и роль (автор, консультант или рецензент).
+                 Строка на каждого: <li><b>Имя Фамилия</b><span>специализация, рецензент уроков раздела «…»</span></li> -->
+          </ul>
         </div>
       </div>
     </div>
@@ -646,91 +647,74 @@
     <div class="wrap">
       <div class="price-panel">
         <div class="price-copy">
-          <h2>Чтобы в трудный вечер было куда заглянуть</h2>
-          <p class="lead">Подростковый возраст длится лет шесть. Курс остается с вами на все это время: начните с того, что болит сейчас, и открывайте следующие разделы, когда до них дорастете.</p>
-          <p class="motto">Один раз платите, доступ навсегда.</p>
+          <h2>Чтобы было куда заглянуть после «нам надо поговорить»</h2>
+          <p class="lead">Все 33 урока, подсказки для разговоров и памятки в одном месте. Можно начать с сегодняшней ссоры, а к остальному вернуться, когда понадобится.</p>
         </div>
-        <!-- Состав — как на n-e-n.ru/podrostok/landing/ -->
         <div class="price-action">
           <p class="name">У меня подросток, помогите</p>
+          <p class="includes">33 урока · 9 разделов · подсказки для разговоров · памятки</p>
           <p class="price">4&nbsp;500&nbsp;₽</p>
-          <ul class="incl">
-            <li>Все уроки девяти разделов в тексте и аудио</li>
-            <li>Квизы с разбором ответов</li>
-            <li>Памятки к каждой ситуации для телефона и печати</li>
-            <li>Библиотека подсказок для разговоров</li>
-            <li>Бессрочный доступ без подписки</li>
-          </ul>
           <a class="btn" id="priceBuy" href="https://n-e-n.ru/course/podrostok/enroll/">Купить курс за 4&nbsp;500&nbsp;₽</a>
-          <p class="note">Промокод можно применить на странице оформления. Оплата картой или через СБП.</p>
+          <p class="note">Проходить по порядку необязательно. Доступ остается навсегда.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ. Вопросы об оплате и доступе — по условиям со страницы n-e-n.ru/podrostok/landing/ -->
   <section class="faq" id="voprosy">
     <div class="wrap">
       <div class="section-head">
-        <h2>Частые вопросы</h2>
+        <h2>А если…</h2>
       </div>
       <div class="faq-list">
         <details>
-          <summary>Кому подойдет курс?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Моему ребенку еще не 11 или уже больше 17?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Всем, кто растит подростка 11–17 лет: мамам, папам, отчимам, бабушкам. В примерах есть и дочери, и сыновья. О взрослении и о сексе с дочерью и с сыном говорят по-разному, поэтому эти уроки раздельные.</p>
+            <p>Курс рассчитан на родителей подростков 11–17 лет. Посмотрите <a href="#programma">программу</a>: она поможет понять, насколько темы совпадают с тем, что происходит у вас сейчас.</p>
           </div>
         </details>
         <details>
-          <summary>С какого раздела начать?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>У меня нет времени проходить целый курс?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>С того, где узнали свою ситуацию. Каждый раздел и каждый урок понятны сами по себе, проходить их по порядку не нужно.</p>
-            <p>Если не знаете, с чего начать, откройте раздел «Мы постоянно ссоримся». В нем о том, что происходит с подростком, как сделать, чтобы он рассказывал сам, и что делать, если вы сорвались.</p>
+            <p>Читать все подряд не нужно. Можно открыть один урок по ситуации, которая беспокоит сегодня, а к остальным вернуться позже.</p>
           </div>
         </details>
         <details>
-          <summary>Можно слушать курс вместо чтения?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Мы сейчас почти не разговариваем?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Да. У всех уроков есть аудиоверсия, текст остается под рукой. Один урок читается за 15–25 минут.</p>
-            <p>В практических уроках есть квизы с разбором ответов, а памятки можно сохранить на телефон или распечатать.</p>
+            <p>Начните с раздела «Мы постоянно ссоримся». В нем разбираем, как начать разговор и вернуться к общению после конфликта.</p>
           </div>
         </details>
         <details>
-          <summary>Как получить доступ после оплаты?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Мне нужны слова, а не еще один совет «поговорите»?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Нажмите «Купить курс». На странице оформления можно войти в личный кабинет или зарегистрироваться, оплатить курс картой или через СБП. Все уроки открываются сразу после оплаты.</p>
-            <p>Если что-то пошло не так, напишите на <a href="mailto:support@n-e-n.ru">support@n-e-n.ru</a>.</p>
+            <p>В уроках есть подсказки для разговоров и первые шаги. <a href="#kurs">Пример</a> можно посмотреть выше, в блоке о том, как устроен урок.</p>
           </div>
         </details>
         <details>
-          <summary>Где ввести промокод?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Нужен психолог или врач?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>На странице оформления курса. Итоговую сумму вы увидите до перехода к оплате.</p>
+            <p>Курс не заменяет консультацию. В разделе «Нужна помощь» разбираем ситуации, в которых важно обратиться к специалисту.</p>
           </div>
         </details>
         <details>
-          <summary>Это подписка? Сколько действует доступ?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Помощь нужна прямо сейчас?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Оплата разовая, доступ к курсу бессрочный. Законы, телефоны служб и схемы мошенников меняются, и мы обновляем уроки вслед за ними. Обновления появляются в вашем кабинете без доплаты.</p>
+            <p>Бесплатная справка <a href="https://n-e-n.ru/podrostok/kuda-zvonit/">«Куда звонить?»</a> доступна без покупки курса.</p>
           </div>
         </details>
         <details>
-          <summary>Заменяет ли курс психолога или врача?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Как оплатить курс и получить доступ?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Нет. Курс помогает понять, что происходит, и выбрать следующий шаг. В каждом уроке сказано, при каких признаках пора к специалисту, а в разделе «Нужна помощь» разобрано, к кому идти и куда звонить.</p>
-            <p>Если подросток в опасности прямо сейчас, звоните 112.</p>
+            <p>Нажмите «Купить курс за 4 500 ₽». На странице оформления можно войти или зарегистрироваться и применить промокод. Итоговую сумму вы увидите до перехода к оплате.</p>
+            <p>Если что-то не получилось, напишите на <a href="mailto:support@n-e-n.ru">support@n-e-n.ru</a>.</p>
           </div>
         </details>
         <details>
-          <summary>Можно бесплатно открыть справку «Куда звонить?»<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
+          <summary>Сколько действует доступ?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
           <div class="answer">
-            <p>Да. <a href="https://n-e-n.ru/podrostok/kuda-zvonit/">«Куда звонить?»</a> открыта без оплаты и регистрации: первые действия, если с подростком беда, и телефоны служб.</p>
-          </div>
-        </details>
-        <details>
-          <summary>Можно ли получить консультацию психолога?<span class="plus" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></summary>
-          <div class="answer">
-            <p>Да. Курс мы делали вместе с <a href="https://balansity.ru/" target="_blank" rel="noopener">Балансити</a>, и участники курса получают скидку на консультации его психологов. Консультации покупаются отдельно, на сайте Балансити.</p>
+            <p>Доступ бессрочный, подписки нет: курс оплачивается один раз. К урокам и памяткам можно возвращаться, когда они снова понадобятся.</p>
           </div>
         </details>
       </div>
@@ -739,11 +723,11 @@
 
 </main>
 
-<!-- Плашка с покупкой: та же форма оплаты, что у кнопок первого экрана и блока стоимости -->
+<!-- Плашка с покупкой: та же оплата, что у кнопок первого экрана и блока стоимости -->
 <aside class="sticky-cta" id="stickyCta" aria-label="Купить курс" hidden>
   <div class="txt">
-    <p class="line"><span class="desk">Что сказать подростку, когда слова кончились</span><span class="mob">Курс НЭН о подростках</span></p>
-    <p class="name">Курс «У меня подросток, помогите»</p>
+    <p class="line"><span class="desk">Ссоры, телефон, школа и вопросы посложнее</span><span class="mob">33 ситуации из жизни с подростком</span></p>
+    <p class="name">33 ситуации с объяснениями и подсказками для родителей подростков.</p>
   </div>
   <a class="btn" href="https://n-e-n.ru/course/podrostok/enroll/">Купить за 4&nbsp;500&nbsp;₽</a>
 </aside>
@@ -752,16 +736,9 @@
   <div class="wrap">
 
     <div class="help" id="pomosh">
-      <div>
-        <h2>Если с подростком беда прямо сейчас</h2>
-        <p class="lead">Бесплатно и анонимно. На телефоне доверия отвечают и подросткам, и родителям.</p>
-      </div>
-      <ul class="help-lines">
-        <li><a class="num" href="tel:112">112</a><span class="what">Подросток в опасности: скорая, полиция, спасатели</span></li>
-        <li><a class="num" href="tel:88002000122">8-800-2000-122</a><span class="what">Детский телефон доверия, если не знаете, что делать</span></li>
-        <li><a class="num" href="tel:124">124</a><span class="what">Тот же телефон доверия, короткий номер с мобильного</span></li>
-      </ul>
-      <p class="more">Первые действия и все телефоны служб — в бесплатной справке <a href="https://n-e-n.ru/podrostok/kuda-zvonit/">«Куда звонить?»</a>, без оплаты и регистрации.</p>
+      <p class="help-q">Нужна помощь сейчас?</p>
+      <a class="help-link" href="https://n-e-n.ru/podrostok/kuda-zvonit/">Бесплатная справка «Куда звонить?»&nbsp;→</a>
+      <p class="help-note">Открывается без покупки и регистрации. Если подросток в опасности, звоните <a href="tel:112">112</a>. Детский телефон доверия: <a href="tel:88002000122">8-800-2000-122</a>, с мобильного <a href="tel:124">124</a>.</p>
     </div>
 
     <div class="foot-grid">
